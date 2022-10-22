@@ -1,13 +1,18 @@
 from ctypes import sizeof
+from logging import RootLogger
 from operator import length_hint
 from select import select
-from tkinter import *  
+from tkinter import *
+import tkinter
+from turtle import width  
+from PIL import ImageTk,Image
 import numpy as np
 import time
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 import threading
+import os
 import random
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -44,29 +49,37 @@ class bird:
         
 
 class visualizer:
-    def __init__(self,menu,bird,rules)->None:
-        self.name=Label(root,text="AVE")
+    def __init__(self,menu,frame1,bird,rules)->None:
+        self.frame1=frame1
+        self.name=Label(self.frame1,text="AVE",background='#353437')
         self.name.configure(font=("Arial",50))
-        self.size=Label(root,text="AVE")
+
+        openImage=Image.open(bird.image)
+        img=openImage.resize((200,300))
+        self.photo=ImageTk.PhotoImage(img)
+        self.image=Label(self.frame1,image=self.photo)
+
+        self.size=Label(self.frame1,text="AVE",background='#353437')
         self.size.configure(font=("Arial",40))
-        self.description=Label(root,text="AVE")
+        self.description=Label(self.frame1,text="AVE",background='#353437')
         self.description.configure(font=("Arial",40))
-        self.habitat=Label(root,text="AVE")
+        self.habitat=Label(self.frame1,text="AVE",background='#353437')
         self.habitat.configure(font=("Arial",40))
-        self.comments=Label(root,text="AVE")
+        self.comments=Label(self.frame1,text="AVE",background='#353437')
         self.comments.configure(font=("Arial",40))
-        self.explanation=Label(root,text="AVE")
+        self.explanation=Label(self.frame1,text="AVE",background='#353437')
         self.explanation.configure(font=("Arial",40))
         self.menu_window=menu
         self.bird=bird
         self.rules=rules
-        self.menuButton=Button(root,text="Main Menu",command=self.main_window,bg="orange")
+        self.menuButton=Button(self.frame1,text="Menu Principal",command=self.main_window,bg="#7a7b7c", fg="white")
         self.menuButton.config(height=2,width=15)
         self.showBird()
 
 
     def show(self):
         self.name.pack()
+        self.image.pack()
         self.size.pack()
         self.description.pack()
         self.habitat.pack()
@@ -78,7 +91,7 @@ class visualizer:
     #Oculta la vista de la descripción del ave
     def hide(self):
         self.name.pack_forget()
-        
+        self.image.pack_forget()
         self.size.pack_forget()
         self.description.pack_forget()
         self.habitat.pack_forget()
@@ -87,22 +100,28 @@ class visualizer:
         self.menuButton.pack_forget()
 
     def showBird(self):
-        self.name=Label(root,text=self.bird.name)
+        self.name=Label(self.frame1,text=self.bird.name,background='#353437',fg="white")
         self.name.configure(font=("Arial",35))
-        self.size=Label(root,text=self.bird.size,wraplength=800)
-        self.size.configure(font=("Arial",15))
-        self.description=Label(root,text=self.bird.description,wraplength=800)
-        self.description.configure(font=("Arial",15))
-        self.habitat=Label(root,text=self.bird.habitat,wraplength=800)
-        self.habitat.configure(font=("Arial",15))
-        self.comments=Label(root,text=self.bird.comments,wraplength=800)
-        self.comments.configure(font=("Arial",15))
+
+        openImage=Image.open(self.bird.image)
+        img=openImage.resize((200,200))
+        self.photo=ImageTk.PhotoImage(img)       
+        self.image=Label(self.frame1,image=self.photo)
+
+        self.size=Label(self.frame1,text=self.bird.size,wraplength=1200,background='#353437',fg="white")
+        self.size.configure(font=("Arial",14))
+        self.description=Label(self.frame1,text=self.bird.description,wraplength=1200,background='#353437',fg="white")
+        self.description.configure(font=("Arial",14))
+        self.habitat=Label(self.frame1,text=self.bird.habitat,wraplength=1200,background='#353437',fg="white")
+        self.habitat.configure(font=("Arial",14))
+        self.comments=Label(self.frame1,text=self.bird.comments,wraplength=1200,background='#353437',fg="white")
+        self.comments.configure(font=("Arial",14))
         exp="\n\n\nEl ave fue encontrada en base a las siguientes características:\n"
         for key in self.rules.keys():
             exp+=key+":"+self.rules[key]+"\n"
 
-        self.explanation=Label(root,text=exp,wraplength=800)
-        self.explanation.configure(font=("Arial",15))
+        self.explanation=Label(self.frame1,text=exp,wraplength=1200,background='#353437',fg="white")
+        self.explanation.configure(font=("Arial",14))
     
 
     #Muestra la vista principal
@@ -117,20 +136,28 @@ class visualizer:
 #En esta clase se tienen los metodos para clasificar
 class clasifier:
     #Constructor de la clase
-    def __init__(self,menu) -> None:
-        self.title=Label(root,text="Clasificador de aves")
-        self.title.configure(font=("Arial",35))
+    def __init__(self,menu,frame1) -> None:
         self.menu_window=menu
-        self.menuButton=Button(root,text="Main Menu",command=self.main_window,bg="orange")
+        self.frame1=frame1
+        self.title=Label(self.frame1,text="Clasificador de aves",background='#353437',fg="white")
+        self.title.configure(font=("Arial",35))
+        
+        
+        self.menuButton=Button(self.frame1,text="Main Menu",command=self.main_window,bg="#7a7b7c",fg="white")
         self.menuButton.config(height=10,width=50)
+        
+        self.loadall()
+        
+    def loadall(self):
+        
         self.good=False
         self.doing=True
         self.aves=[]
         self.default_ave=bird()
         self.load_birds()
         self.rules={}
-        self.visual=visualizer(self.menu_window,self.aves[0],self.rules)
-
+        
+        self.visual=visualizer(self.menu_window,self.frame1,self.aves[0],self.rules)
         self.possible_rules={}
         self.possible_aves=[]
 
@@ -138,6 +165,7 @@ class clasifier:
         
     def load_birds(self):
         self.default_ave.name="Desconocida"
+        self.default_ave.image="sources/garceta_pie_dorado.jpg"
 
         
         self.aux=bird()
@@ -150,6 +178,7 @@ class clasifier:
         self.aux.caracteristics["loras"]="amarillo"
         self.aux.caracteristics["cuerpo"]="blanco"
         self.aux.caracteristics["tarsos"]="negro"
+        self.aux.image="sources/garceta_pie_dorado.jpg"
         self.aves.append(self.aux)
 
 
@@ -163,6 +192,7 @@ class clasifier:
         self.aux.caracteristics["alas"]="verde oscuro"
         self.aux.caracteristics["cola"]="verde oscuro"
         self.aux.caracteristics["tarsos"]="amarillos"
+        self.aux.image="sources/garceta_verde.jpg"
         self.aves.append(self.aux)
 
         self.aux=bird()
@@ -180,6 +210,7 @@ class clasifier:
         self.aux.caracteristics["alas"]="gris"
         self.aux.caracteristics["cola"]="gris"
         self.aux.caracteristics["pecho"]="blanquecino"
+        self.aux.image="sources/pedrete_corona_negra.jpg"
         self.aves.append(self.aux)
 
         self.aux=bird()
@@ -192,6 +223,7 @@ class clasifier:
         self.aux.caracteristics["cabeza"]="grisácea"
         self.aux.caracteristics["cuerpo"]="negruzco"
         self.aux.caracteristics["cola"]="negro"
+        self.aux.image="sources/zopilote_comun.jpg"
         self.aves.append(self.aux)
 
         self.aux=bird()
@@ -204,6 +236,7 @@ class clasifier:
         self.aux.caracteristics["cabeza"]="roja"
         self.aux.caracteristics["cuerpo"]="café oscuro"
         self.aux.caracteristics["cola"]="gris"
+        self.aux.image="sources/zopilote_aura.jpg"
         self.aves.append(self.aux)
 
         self.aux=bird()
@@ -220,6 +253,8 @@ class clasifier:
         self.aux.caracteristics["alas"]="gris"
         self.aux.caracteristics["patas"]="amarillo"
         self.aux.caracteristics["tarsos"]="amarillo"
+        self.aux.image="sources/gavilan_pecho_rufo.jpg"
+        
 
 
         self.aves.append(self.aux)
@@ -228,29 +263,34 @@ class clasifier:
 
     def question(self,q,opt):
         options=[]
-        options.append("otro")
+        options.append("Otro")
         for key in opt.keys():
             options.append(key)
         self.selection=StringVar()
         self.chooses=StringVar()
-        self.chooses.set("otro")
-        self.instructions=Label(root,text="Seleccione el color de las siguientes partes del ave:\n\n")
+        self.chooses.set("Otro")
+        self.instructions=Label(self.frame1,text="Seleccione el color de las siguientes partes del ave:\n\n",background='#353437',fg="white")
         self.instructions.configure(font=("Arial",25))
         self.instructions.pack()
-        self.caracteristica=Label(root,text=q)
+        # self.image=ImageTk.PhotoImage(Image.open("bird_main_menu.png"))
+        # self.panel=Label(self.frame1,image=self.image)
+        # self.panel.pack(side="bottom",fill="both",expand="yes")
+        self.caracteristica=Label(self.frame1,text=q,background='#353437',fg="white")
         self.caracteristica.configure(font=("Arial",25))
         self.caracteristica.pack()
-        self.drop=OptionMenu(root,self.chooses,*options)
+        self.drop=OptionMenu(self.frame1,self.chooses,*options)
         self.drop.config(height=1,width=20)
         self.drop.pack()
-        self.button=Button(root,text="Siguiente",command=self.clicked,bg="light green")
+        self.button=Button(self.frame1,text="Siguiente",command=self.clicked,bg="#7a7b7c",fg="white")
         self.button.config(height=2,width=10)
         self.button.pack()
         self.button.wait_variable(self.selection)
-        self.cont=0
+        self.cont = 0
         self.listo = False
+        # self.panel.pack_forget()
         self.instructions.pack_forget()
         self.drop.pack_forget()
+       # self.panel.pack_forget()
         self.button.pack_forget()
         self.caracteristica.pack_forget()
         return self.selection
@@ -263,6 +303,8 @@ class clasifier:
 
 
     def clasify(self):
+        #self.load_birds()
+        self.loadall()
         self.possible_aves=self.aves
         self.possible_rules={}
         self.rules={}
@@ -307,9 +349,9 @@ class clasifier:
         if(len(self.possible_aves)==1):
             avetoshow=self.possible_aves[0]
 
-            self.visual=visualizer(self.menu_window,avetoshow,self.rules)
+            self.visual=visualizer(self.menu_window,self.frame1,avetoshow,self.rules)
         else:
-            self.visual=visualizer(self.menu_window,self.default_ave,self.rules)
+            self.visual=visualizer(self.menu_window,self.frame1,self.default_ave,self.rules)
         
         self.visual.show()
     
@@ -329,6 +371,7 @@ class clasifier:
     #Muestra la vista principal
     def main_window(self):
         self.hide()
+        
         self.menu_window.show()
 
     def closing(self):
@@ -339,13 +382,24 @@ class clasifier:
 
 class main_menu:
     def __init__(self) -> None:
-        self.title=Label(root, text="Clasificador de aves\n\n\n",font=("Arial",25))
-        self.clasifier_button=Button(root,text="Encontrar ave",command=self.show_clasifier_window,bg="sky blue")
+        
+        
+        openImage=Image.open("sources/bird.jpg")
+        img=openImage.resize((1550,800))
+        # self.image=ImageTk.PhotoImage(img)
+                
+        # self.panel=Label(root,image=self.image)
+        self.frame1 = Frame(root,background='#353437')
+        self.title=Label(self.frame1, text="Clasificador de aves\n\n\n",font=("Arial",25),background='#353437',fg="white")
+        self.clasifier_button=Button(self.frame1,text="Encontrar ave",command=self.show_clasifier_window,bg="#7a7b7c",fg="white")
         self.clasifier_button.config(height=5,width=30)
-        self.clasifier_window = clasifier(self)
+        self.clasifier_window = clasifier(self,self.frame1)
 
     #Muestra la vista principal
     def show(self):
+        
+        # self.panel.place(x=0,y=0)
+        self.frame1.pack(pady = 20 )
         self.title.pack()
         self.clasifier_button.pack()
     
@@ -357,6 +411,8 @@ class main_menu:
     #Muestra la vista del clasificador
     def show_clasifier_window(self):
         self.hide()
+        
+        #self.clasifier_window.load_birds()
         self.clasifier_window.clasify()
 
     #Funcion para terminar los procesos 
@@ -374,7 +430,9 @@ if __name__ == "__main__":
             
         root.protocol("WM_DELETE_WINDOW", on_closing)
         root.title("Sistema experto")
-        root.geometry("1000x800")
+        w, h = root.winfo_screenwidth(), root.winfo_screenheight()
+        root.geometry("%dx%d" % (w, h))
+        root.configure(bg='#353437')
         program=main_menu()
         program.show()
         root.mainloop()
