@@ -166,7 +166,6 @@ class clasifier:
     def load_birds(self):
         self.default_ave.name="Desconocida"
         self.default_ave.image="sources/garceta_pie_dorado.jpg"
-
         
         self.aux=bird()
         self.aux.name="Garceta pie dorado"
@@ -180,7 +179,6 @@ class clasifier:
         self.aux.caracteristics["tarsos"]="negro"
         self.aux.image="sources/garceta_pie_dorado.jpg"
         self.aves.append(self.aux)
-
 
         self.aux=bird()
         self.aux.name="Garceta verde"
@@ -254,12 +252,263 @@ class clasifier:
         self.aux.caracteristics["patas"]="amarillo"
         self.aux.caracteristics["tarsos"]="amarillo"
         self.aux.image="sources/gavilan_pecho_rufo.jpg"
-        
-
-
         self.aves.append(self.aux)
 
+        self.aux=bird()
+        self.aux.name="Aguililla cola roja"
+        self.aux.description="Adulto: Ojos negros o amarillos, cere amarillo, pico gris oscuro. Coloración del plumaje general variable, normalmente compuesto por tonos cafés, rojizos y/o blanquecinos. Cola generalmente rojiza con banda subterminal negra. Al vuelo exhibe marca patagial oscura. Juvenil: Parecido al adulto pero sin coloraciones rojizas."
+        self.aux.habitat="Áreas abiertas (e.g., valles, praderas, cultivos), bosques y cableado eléctrico paralelo a carreteras. Sitios de posible observación en el bosque: raramente sobrevuela el bosque y/o se percha en árboles altos."
+        self.aux.comments="Se alimenta principalmente de roedores, otros mamíferos pequeños, aves, reptiles, anfibios y ocasionalmente carroña. Sin duda alguna, esta es la aguililla más común en el país."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="gris"
+        self.aux.caracteristics["cere"]="amarilla"
+        self.aux.caracteristics["pecho"]="blanco"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="cafe"
+        self.aux.caracteristics["alas"]="negras"
+        self.aux.caracteristics["cola"]="roja"
+        self.aux.image="sources/aguililla_cola_roja.jpg"
+        self.aves.append(self.aux)
 
+        self.aux=bird()
+        self.aux.name="Cernícalo americano"
+        self.aux.description="Edades similares: Macho: Ojos negros, cere amarillo, pico gris oscuro. Corona azul-gris con centro rojizo, zona malar y borde de auriculares negros. Garganta blanca, pecho anaranjado deslavado; vientre, lados y flancos blancos con motas negras. Nuca anaranjada con un parche negro al centro, espalda barrada de rojizo y negro, rabadilla rojiza. Alas azulgris con motas negras. Cola rojiza con banda terminal negra. Hembra: Parecida al macho pero con corona azul-gris claro (sin centro rojizo), pecho y vientre blancos jaspeados de rojizo y alas barradas de café y negro."
+        self.aux.habitat="Áreas abiertas (e.g., valles, praderas, cultivos), bordes de bosques, matorrales y ciudades. Sitios de posible observación en el bosque: áreas abiertas (generalmente perchados en rejas y cables) y zonas boscosas con árboles dispersos (principalmente eucaliptales)."
+        self.aux.comments="Se alimenta principalmente de insectos, mamíferos pequeños, aves y reptiles. El cernícalo americano es el ave rapaz diurna más colorida y pequeña del país."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["corona"]="azul-gris"
+        self.aux.caracteristics["cere"]="amarilla"
+        self.aux.caracteristics["pecho"]="anaranjado"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="roja"
+        self.aux.caracteristics["alas"]="azul-gris"
+        self.aux.caracteristics["cola"]="roja"
+        self.aux.image="sources/cernicalo_americano.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Tórtola cola larga"
+        self.aux.description="Adulto: (sexos similares) Ojos rojos, pico gris. Frente, barbilla y anillo ocular blanquecinos; resto de la cabeza café grisácea (borde de plumas oscuro). Cuerpo café grisáceo con apariencia escamosa. Cobertoras inferiores de la cola levemente barradas blanco y negro. Cola larga café grisáceo con rectrices exteriores blancas. Patas y tarsos anaranjados. Al vuelo exhibe coloración rojiza en las alas. Juvenil: Parecido al adulto pero con ojos café claro y plumaje general café amarillento (sin apariencia escamosa)."
+        self.aux.habitat="Matorrales, bordes de bosques, granjas y ciudades. Sitios de posible observación en el bosque: áreas altamente frecuentadas por los usuarios del bosque (e.g., caminos, kioscos, área de pic-nic, accesos), sotobosques clareados y arbolados dispersos."
+        self.aux.comments="Se alimenta de una gran variedad de semillas y frutos. La tórtola cola larga es uno de los mejores ejemplos de una especie adaptada a los sistemas urbanos. Es común observar grandes grupos de tórtolas alimentándose en el suelo."
+        self.aux.caracteristics["ojos"]="rojo"
+        self.aux.caracteristics["pico"]="gris"
+        self.aux.caracteristics["alas"]="rojas"
+        self.aux.caracteristics["patas"]="anaranjado"
+        self.aux.caracteristics["cola"]="cafe"
+        self.aux.caracteristics["tarsos"]="anaranjado"
+        self.aux.image="sources/tortola_cola_larga.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Garrapatero pijuy"
+        self.aux.description="Adulto: (sexos similares) Ojos negros, pico ancho y surcado gris. Cuerpo negro. Cola larga y articulada negra. Juvenil: Parecido al adulto pero con pico más delgado y plumaje general café oscuro"
+        self.aux.habitat="Matorrales densos, pastizales, tierras agrícolas y bordes de bosques tropicales. Sitios de posible observación en el bosque: sotobosques clareados, áreas de eucalipto y/o casuarina, vegetación secundaria nativa y vegetación adyacente a cuerpos de agua."
+        self.aux.comments="Se alimenta principalmente de insectos, semillas y frutos. Debido a que la coloración general de este garrapatero es totalmente negra, puede ser confundido con el zanate mexicano (Quiscalus mexicanus). No obstante, cuando el garrapatero se percha, mueve su cola articulada ascendente y descendentemente."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="gris"
+        self.aux.caracteristics["corona"]="negra"
+        self.aux.caracteristics["pecho"]="negro"
+        self.aux.caracteristics["vientre"]="negro"
+        self.aux.caracteristics["espalda"]="negro"
+        self.aux.caracteristics["alas"]="negras"
+        self.aux.caracteristics["cola"]="negra"
+        self.aux.image="sources/garrapatero_pijuy.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Lechuza de campanario"
+        self.aux.description="Edades similares. Macho: Ojos negros, pico gris claro con base rosácea (generalmente inconspicua). Cara blanca en forma de corazón delimitada por una línea rojiza. Pecho y vientre blanco grisáceos con pequeños puntos negros. Resto del cuerpo anaranjado amarillento claro con áreas (parches) grises. Hembra: Parecida al macho adulto pero con pecho anaranjado amarillento y vientre amarillo deslavado."
+        self.aux.habitat="Áreas abiertas, borde de bosques semiáridos a semihúmedos, granjas, graneros y zonas urbanas (en parques, campanarios, casas abandonadas, bodegas). Sitios de posible observación en el bosque: áreas de pino y eucalipto con árboles altos."
+        self.aux.comments="Se alimenta principalmente de mamíferos pequeños (e.g., ratas, ratones, conejos, musarañas), aves pequeñas y lagartijas. Como es común entre las aves rapaces nocturnas, la lechuza de campanario es de hábitos generalmente nocturnos, sin embargo actividades crepusculares o diurnas son comunes."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="gris"
+        self.aux.caracteristics["pecho"]="blanco"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["alas"]="anaranjadas"
+        self.aux.caracteristics["cola"]="anaranjada"
+        self.aux.image="sources/lechuza-campanario.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Chotacabras zumbón"
+        self.aux.description="Adulto: Macho: Ojos y pico negros. Línea superciliar gris claro, corona oscura; barbilla y borde de auriculares rojizos. Garganta blanca, pecho barrado de gris-café oscuro y negro, vientre barrado de blanco y café. Espalda grisácea; plumas cobertoras del ala negras con motas rojizas. Alas barradas de gris y negro; plumas primarias negras. Cola barrada de café oscuro y negro. Al vuelo exhibe parche vertical blanco cerca de base de primarias y banda subterminal blanca. Hembra: Parecida al macho adulto pero con garganta rojiza, pecho barrado de amarillo oscuro y café y sin banda subterminal blanca. Juvenil: Parecido a la hembra adulta pero con coloración general grisácea clara o rojiza."
+        self.aux.habitat="Áreas abiertas y semiabiertas (e.g., llanuras, ciudades, praderas), bosques de pino y borde de bosques húmedos. Sitios de posible observación en el bosque: en el día se puede observar en el suelo de áreas semiabiertas y/o matorrales, por la noche es común observarlos sobrevolando el bosque en áreas abiertas."
+        self.aux.comments="Se alimenta principalmente de insectos. Al igual que el resto de los chotacabras, su coloración le permite camuflarse durante el día"
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="negro"
+        self.aux.caracteristics["pecho"]="cafe"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="gris"
+        self.aux.caracteristics["alas"]="negras"
+        self.aux.caracteristics["cola"]="cafe"
+        self.aux.image="sources/chotacabras_zumbon.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Colibrí pico ancho"
+        self.aux.description="Adulto: Macho: Ojos negros, pico rojo con punta negra. Línea ocular blanca (generalmente inconspicua), gorja azul iridiscente, resto de la cabeza verde iridiscente. Pecho y vientre verde iridiscentes. Alas oscuras. Cola emarginada azul. Hembra: Cabeza verde (no iridiscente), línea ocular blanquecina conspicua. Garganta grisácea; pecho y vientre gris oscuro. Espalda, rabadilla y cobertoras del ala verde opaco. Cola parecida a la del macho adulto pero con rectrices exteriores con puntas blancas. Juvenil: Parecido a la hembra adulta pero con tonos más opacos (en ocasiones el macho subadulto exhibe manchones azules en la gorja"
+        self.aux.habitat="Matorrales arbolados, bosques de encino, bosques húmedos, vegetación riparia y ciudades. Sitios de posible observación en el bosque: prácticamente en cualquier sitio del bosque con plantas en floración o sitios cercanos a cuerpos de agua."
+        self.aux.comments="Se alimenta principalmente de néctar floral, en ocasiones consume insectos y rara vez pequeñas arañas. El colibrí pico ancho se ha adaptado eficientemente a los ambientes urbanos y es actualmente el colibrí más común tanto dentro del bosque, como de la ciudad."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="rojo"
+        self.aux.caracteristics["pecho"]="verde"
+        self.aux.caracteristics["vientre"]="verde"
+        self.aux.caracteristics["alas"]="negras"
+        self.aux.caracteristics["cola"]="azul"
+        self.aux.image="sources/colibri_pico_ancho.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Zafiro oreja blanca"
+        self.aux.description="Adulto: Macho: Ojos negros, pico rojo con la punta negra. Línea ocular blanca (muy conspicua), resto de la cabeza y gorja morado iridiscentes (aparentemente negras). Lados y flancos verdes; vientre y cobertoras inferiores de la cola blanquecinas. Espalda y cobertoras alares verdes. Cola redondeada oscura. Hembra: Parecida al macho adulto pero con frente grisácea, zona malar blanca, nuca verde, vientre grisáceo, punta de rectrices exteriores blancas y garganta, pecho, flancos y lados blanquecinos con filas de motas verdes. Juvenil: Parecido a la hembra adulta pero con tonos más opacos y deslavados."
+        self.aux.habitat="claros y bordes de bosques montañosos (e.g., pino, pino-encino, encino) cercanos a arroyos. Sitios de posible observación en el bosque: claros en áreas de pino y eucalipto, vegetación secundaria nativa y vegetación circundante a cuerpos de agua."
+        self.aux.comments="Se alimenta principalmente de néctar floral y en ocasiones consume insectos pequeños y arañas. Dado que el zafiro oreja blanca no es muy afín a los ecosistemas urbanos, cuando entra a ellos prefiere áreas con niveles bajos de perturbación, por lo que no se observa fuera de suburbios, parques y relictos de vegetación nativa."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="rojo"
+        self.aux.caracteristics["pecho"]="verde"
+        self.aux.caracteristics["vientre"]="verde"
+        self.aux.caracteristics["espalda"]="morada"
+        self.aux.caracteristics["alas"]="negras"
+        self.aux.caracteristics["cola"]="azul"
+        self.aux.image="sources/zafiro_oreja_blanca.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Colibrí berilo"
+        self.aux.description="Adulto: Macho: Ojos negros, pico rojo con la punta negra. Línea ocular blanca (generalmente inconspicua), resto de la cabeza verde oscuro iridiscente. Flancos, lados y vientre grisáceos. Espalda verde; rabadilla y cobertoras superiores de la cola café-canela. Alas café rojizo. Cola cuadrada (levemente emarginada) rojiza. Hembra: Parecida al macho adulto pero con coloración general verde opaca (no iridiscente). Juvenil: Parecido a la hembra adulta pero con vientre blanquecino y coloración general más clara."
+        self.aux.habitat="Ecotonos y claros de bosques montañosos (principalmente encino) y sembradíos tropicales. Sitios de posible observación en el bosque: áreas arboladas con sotobosque en floración y vegetación circundante a cuerpos de agua."
+        self.aux.comments="Se alimenta principalmente de néctar floral, en ocasiones consume insectos y rara vez pequeñas arañas. El colibrí berilo es uno de los colibríes endémicos de México y Centro América. Sin embargo, existen registros ocasionales en el Sur de Arizona y Suroeste de Texas (EUA)."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="rojo"
+        self.aux.caracteristics["pecho"]="verde"
+        self.aux.caracteristics["vientre"]="gris"
+        self.aux.caracteristics["espalda"]="morada"
+        self.aux.caracteristics["alas"]="cafe"
+        self.aux.caracteristics["cola"]="azul"
+        self.aux.image="sources/colibri_berilo.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Colibrí corona violeta"
+        self.aux.description="Adulto: (sexos similares) Ojos negros, pico rojo con la punta negra. Corona violeta. Garganta, pecho y vientre blancos, lados y flancos verde claro. Nuca, espalda y cobertoras del ala verde olivo. Alas oscuras. Cola emarginada verde olivo. Juvenil: Parecido al adulto pero con corona verde (en ocasiones con violeta claro en la frente)."
+        self.aux.habitat="Matorrales, bosques, vegetación riparia y áreas semiabiertas. Sitios de posible observación en el bosque: prácticamente en cualquier sitio del bosque con plantas en floración y sitios cercanos a cuerpos de agua."
+        self.aux.comments="Se alimenta principalmente de néctar floral, en ocasiones consume insectos y rara vez pequeñas arañas. Dadas las preferencias de hábitat del colibrí corona violeta, es común observarlo cercano a cuerpos de agua."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="rojo"
+        self.aux.caracteristics["corona"]="violeta"
+        self.aux.caracteristics["pecho"]="blanco"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="verde"
+        self.aux.caracteristics["alas"]="cafe"
+        self.aux.caracteristics["cola"]="verde"
+        self.aux.image="sources/colibri_corona_violeta.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Momoto corona café"
+        self.aux.description="Adulto: (sexos similares) Ojos cafés, pico largo y punteado negro. Corona rojiza, máscara negra rodeada por plumas azules y/o moradas. Pecho verde con mota central negra, vientre verde amarillento. Alas azul-verde. Cola verde (en ocasiones con tonalidades azules) con dos raquetas terminales (base azul-verde y punta negra). Juvenil: Parecido al adulto pero con coloración general menos intensa."
+        self.aux.habitat="Bosques y matorrales. Sitios de posible observación en el bosque: áreas boscosas (e.g., pino, eucalipto, casuarina), cañadas con vegetación secundaria nativa y vegetación aledaña a cuerpos de agua."
+        self.aux.comments="Se alimenta principalmente de frutos e insectos. El momoto corona café es una de las aves más coloridas y vistosas del Bosque Los Colomos. Debido al movimiento pendular de su cola larga, también recibe el nombre de pájaro reloj, o simplemente péndulo."
+        self.aux.caracteristics["ojos"]="cafe"
+        self.aux.caracteristics["pico"]="negro"
+        self.aux.caracteristics["corona"]="cafe"
+        self.aux.caracteristics["pecho"]="verde"
+        self.aux.caracteristics["vientre"]="verde"
+        self.aux.caracteristics["alas"]="Azul-verde"
+        self.aux.caracteristics["cola"]="verde"
+        self.aux.image="sources/momoto_corona_cafe.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Martín pescador norteño"
+        self.aux.description="Adulto: Macho: Ojos negros, pico negro con base gris. Marca loral blanca, resto de la cabeza azul con copete prominente. Collar blanco, franja pectoral azul con motas rojizas (inconspicuas generalmente), pecho y vientre blancos, flancos azules. Espalda, rabadilla y cobertoras superiores de la cola azules. Alas azules con motas blancas. Cola azul con rectrices exteriores barradas de blanco y negro. Hembra: Parecida al macho adulto pero con franja pectoral azul (con parches rojizos), una franja pectoral inferior rojiza, y lados y flancos rojizos. Juvenil: Parecido a la hembra adulta pero sin franja pectoral inferior."
+        self.aux.habitat="Prácticamente en cualquier cuerpo de agua (e.g., ríos, lagos, pantanos, estuarios, bahías). Sitios de posible observación en el bosque: únicamente registrado en el Estanque de los patos."
+        self.aux.comments="Se alimenta básicamente de peces y ocasionalmente consume cangrejos, ranas, mamíferos pequeños, aves pequeñas, lagartijas y frutos. Después del martín-pescador de collar (Megaceryle torquata), el martín pescador norteño es el martín pescador más grande del país."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="negro"
+        self.aux.caracteristics["pecho"]="blanco"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="azul"
+        self.aux.caracteristics["alas"]="azul"
+        self.aux.caracteristics["cola"]="azul"
+        self.aux.image="sources/martin_pescador.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Carpintero del desierto"
+        self.aux.description="Adulto: Macho: Ojos negros, pico gris oscuro (aparentemente negro). Corona roja, resto de la cabeza café-gris claro. Pecho café-gris claro, vientre amarillento, cobertoras inferiores de la cola barradas de blanco y negro. Espalda, rabadilla y alas barradas de blanco y negro. Cola negra con rectrices centrales y exteriores barradas de negro y blanco. Al vuelo exhibe parche blanquecino en la base de primarias. Hembra: Parecida al macho adulto pero sin corona roja. Juvenil: Parecido a la hembra adulta pero con el pico más corto"
+        self.aux.habitat="Zonas áridas a semihúmedas (e.g., matorrales xerófitos, plantaciones). Sitios de posible observación en el bosque: principalmente eucaliptales, no obstante se puede observar en cualquier arbolado del bosque."
+        self.aux.comments="Se alimenta de insectos, frutos, semillas y néctar floral. Durante la época reproductiva emite vocalizaciones fuertes y el cinceleo contra los árboles es mucho más frecuente. Al igual que la mayoría de los pájaros carpinteros, el carpintero del desierto anida en cavidades"
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="gris"
+        self.aux.caracteristics["corona"]="rojo"
+        self.aux.caracteristics["pecho"]="cafe"
+        self.aux.caracteristics["vientre"]="amarillo"
+        self.aux.caracteristics["espalda"]="blanco negro"
+        self.aux.caracteristics["alas"]="blanco negro"
+        self.aux.caracteristics["cola"]="blanco negro"
+        self.aux.image="sources/carpintero_del_desierto.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Chupasavia maculado"
+        self.aux.description="Adulto: Macho: Ojos negros, pico gris oscuro. Corona roja con borde negro, línea superciliar blanca, línea ocular negra, franja blanca de la frente a la nuca (unida a franja pectoral levemente amarillenta). Garganta roja con borde negro, vientre y cobertoras inferiores de la cola blancas jaspeadas de negro. Espalda barrada de blanco y negro. Alas negras con banda vertical blanca, plumas primarias barradas levemente de negro y blanco. Cola negra con rectrices centrales blancas barradas con negro. Hembra: Parecida al macho adulto pero con garganta blanca y con coloración amarillenta en pecho, cuello, nuca y espalda. Juvenil: Con mismos caracteres que los adultos pero con coloración general café amarillento claro."
+        self.aux.habitat="Bosques de encino-pino, bordes de arbolados y huertos. Sitios de posible observación en el bosque: solamente registrado en áreas de casuarina y pino ubicadas al Norte del Estanque de los patos."
+        self.aux.comments="Se alimenta de savia, insectos y frutos. Por su hábito alimenticio, el chupasavia maculado deja anillos de perforaciones en los árboles, elemento con el cual se puede inferir su presencia (en algunos casos). Este chupasavia es silencioso en comparación con los demás pájaros carpinteros, por lo que en ocasiones puede pasar desapercibido."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="gris"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="blanco negro"
+        self.aux.caracteristics["alas"]="blanco negro"
+        self.aux.caracteristics["cola"]="negro"
+        self.aux.image="sources/chupasavia_maculado.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Mosquero copetón"
+        self.aux.description="Adulto: (sexos similares) Ojos negros, maxila negra, mandíbula rosácea. Anillo ocular blanco proyectado hacia el dorso, cabeza café rojiza con copete prominente. Cara, garganta y pecho café-canela, vientre amarillo-canela. Nuca y espalda café-olivo. Alas café oscuro con dos barras alares blanquecinas y borde de secundarias y terciarias amarillo-canela. Cola café. Juvenil: Parecido al adulto pero con coloración general más pálida y con barras alares más anchas"
+        self.aux.habitat="Bosques de niebla, de pino, pino-encino, encino y áreas semiáridas abiertas. Sitios de posible observación en el bosque: áreas con arbolados densos (e.g., zonas de eucalipto, pino y/o casuarina)."
+        self.aux.comments="Se alimenta principalmente de insectos. Comúnmente se posa en perchas visibles. En caso de estar alarmado, su comportamiento se torna inquieto, mueve incesantemente la cola y eleva aún más su copete."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="cafe"
+        self.aux.caracteristics["pecho"]="cafe-canela"
+        self.aux.caracteristics["vientre"]="amarillo-canela"
+        self.aux.caracteristics["alas"]="cafe"
+        self.aux.caracteristics["cola"]="cafe"
+        self.aux.image="sources/mosquero_copeton.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Pibí Tengofrío"
+        self.aux.description="Adulto: (Sexos similares) Ojos negros, maxila negra, mandíbula rosácea. Anillo ocular blanquecino, loras gris claro, resto de la cabeza gris oscuro con copete prominente. Garganta y pecho gris claro, vientre amarillo deslavado. Alas oscuras con dos barras alares grises. Escapulares gris claro. Cola gris. Juvenil: Parecido al adulto pero con cobertoras inferiores de la cola y vientre amarillo claros; barras alares café claro."
+        self.aux.habitat="Bosques de pino, pino-encino y encino. Sitios de posible observación en el bosque: Prácticamente en cualquier área del bosque."
+        self.aux.comments="Se alimenta principalmente de insectos. Al igual que la mayoría de los tiránidos, este pibí se posa en perchas visibles y las utiliza como sitio base para acechar a los insectos que caza al vuelo."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="cafe"
+        self.aux.caracteristics["pecho"]="gris"
+        self.aux.caracteristics["vientre"]="amarillo"
+        self.aux.caracteristics["alas"]="cafe"
+        self.aux.caracteristics["cola"]="cafe"
+        self.aux.image="sources/pibi_tengofrio.jpg"
+        self.aves.append(self.aux)
+
+        self.aux=bird()
+        self.aux.name="Mosquero mínimo"
+        self.aux.description="Adulto: (sexos similares) Ojos negros, pico negro con la base de la mandíbula amarillo-anaranjada. Anillo ocular y loras blancas, resto de la cabeza gris-café. Garganta y vientre blancos, pecho gris-café claro. Espalda y rabadilla grises. Alas negras con dos barras alares blancas; secundarias y terciarias con borde blanquecino. Cola emarginada gris. Juvenil: Parecido al adulto pero con toda la mandíbula inferior amarillo-anaranjada, dos barras alares café claro y vientre amarillo deslavado."
+        self.aux.habitat="Bosques, pastizales y borde de caminos rurales. Sitios de posible observación en el bosque: prácticamente en cualquier área del bosque con excepción de áreas altamente frecuentadas por los usuarios del bosque y/o no arboladas."
+        self.aux.comments="Se alimenta principalmente de insectos y arañas, ocasionalmente consume frutos. Debido a que algunas especies del género Empidonax son prácticamente indistinguibles entre sí, se recomienda identificarlos hasta nivel de género. No obstante, el canto es una de sus marcas de campo más confiables. El canto del mosquero mínimo es un psí metálico constante en grupos de 4 a 9 emisiones por vocalización (número de repeticiones variable)."
+        self.aux.caracteristics["ojos"]="negro"
+        self.aux.caracteristics["pico"]="negro"
+        self.aux.caracteristics["pecho"]="gris cafe"
+        self.aux.caracteristics["vientre"]="blanco"
+        self.aux.caracteristics["espalda"]="gris"
+        self.aux.caracteristics["alas"]="negro"
+        self.aux.caracteristics["cola"]="gris"
+        self.aux.image="sources/mosquetero_minimo.jpg"
+        self.aves.append(self.aux)
+
+        #self.aves.append(self.aux)
 
     def question(self,q,opt):
         options=[]
