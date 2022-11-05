@@ -1,8 +1,13 @@
 from ctypes import sizeof
+from lib2to3.pgen2.token import LEFTSHIFT
 from logging import RootLogger
 from operator import length_hint
 from select import select
 from tkinter import *
+from tkinter import filedialog as fd
+import shutil
+import copy
+import os
 import tkinter
 from turtle import width  
 from PIL import ImageTk,Image
@@ -42,18 +47,19 @@ class bird:
         self.other_names=""
         self.distribution=""
         self.jalisco_distribution=""
-        self.image=""
+        self.image="sources/default.jpeg"
 
         #Caracteristics
         self.caracteristics={}
         
 
 class visualizer:
-    def __init__(self,menu,frame1,bird,rules)->None:
+    def __init__(self,menu,frame1,bird,rules,clasifier)->None:
         self.frame1=frame1
+        self.clasifier=clasifier
         self.name=Label(self.frame1,text="AVE",background='#353437')
         self.name.configure(font=("Arial",50))
-
+        
         openImage=Image.open(bird.image)
         img=openImage.resize((200,300))
         self.photo=ImageTk.PhotoImage(img)
@@ -72,10 +78,17 @@ class visualizer:
         self.menu_window=menu
         self.bird=bird
         self.rules=rules
+        self.addButton=Button(self.frame1,text="Agregar Ave",command=self.add_bird,bg="#7a7b7c", fg="white")
+        self.addButton.config(height=2,width=15)
         self.menuButton=Button(self.frame1,text="Menu Principal",command=self.main_window,bg="#7a7b7c", fg="white")
         self.menuButton.config(height=2,width=15)
         self.showBird()
 
+
+    def add_bird(self):
+        self.addfunction=addBird(self.menu_window,self.frame1,self.clasifier)
+        self.hide()
+        self.addfunction.show()
 
     def show(self):
         self.name.pack()
@@ -85,7 +98,9 @@ class visualizer:
         self.habitat.pack()
         self.comments.pack()
         self.explanation.pack()
-    
+
+        if(self.bird.name=="Desconocida"):
+            self.addButton.pack(side=TOP)
         self.menuButton.pack(side=TOP)
     
     #Oculta la vista de la descripción del ave
@@ -97,6 +112,8 @@ class visualizer:
         self.habitat.pack_forget()
         self.comments.pack_forget()
         self.explanation.pack_forget()
+        if(self.bird.name=="Desconocida"):
+            self.addButton.pack_forget()
         self.menuButton.pack_forget()
 
     def showBird(self):
@@ -122,6 +139,7 @@ class visualizer:
 
         self.explanation=Label(self.frame1,text=exp,wraplength=1200,background='#353437',fg="white")
         self.explanation.configure(font=("Arial",14))
+
     
 
     #Muestra la vista principal
@@ -132,6 +150,149 @@ class visualizer:
     def closing(self):
         del self
 
+class addBird:
+    def __init__(self,menu,frame1,clasifier)->None:
+        self.frame1=frame1
+        self.main_menu=menu
+        self.clasifier=clasifier
+        self.load_caracteristics()
+        # self.name=Label(self.frame1,text="AVE",background='#353437')
+        # self.name.configure(font=("Arial",50))
+
+        # openImage=Image.open(bird.image)
+        # img=openImage.resize((200,300))
+        # self.photo=ImageTk.PhotoImage(img)
+        # self.image=Label(self.frame1,image=self.photo)
+        self.labels = []
+        self.entries = []
+
+        for caracteristic in self.caracteristics:
+            self.labels.append(Label(self.frame1,text=caracteristic.capitalize(),background='#353437',fg="white"))
+            if(caracteristic=="descripcion" or caracteristic=="habitat" or caracteristic=="comentarios"):
+                self.entries.append(Text(self.frame1, height=2, width=45))
+            else:
+                self.entries.append(Entry(self.frame1,width=60))
+
+        
+
+
+
+
+        # self.description=Label(self.frame1,text="AVE",background='#353437')
+        # self.description.configure(font=("Arial",40))
+        # self.habitat=Label(self.frame1,text="AVE",background='#353437')
+        # self.habitat.configure(font=("Arial",40))
+        # self.comments=Label(self.frame1,text="AVE",background='#353437')
+        # self.comments.configure(font=("Arial",40))
+        # self.explanation=Label(self.frame1,text="AVE",background='#353437')
+        # self.explanation.configure(font=("Arial",40))
+        # self.menu_window=menu
+        # self.bird=bird
+        # self.rules=rules
+        # self.menuButton=Button(self.frame1,text="Menu Principal",command=self.main_window,bg="#7a7b7c", fg="white")
+        # self.menuButton.config(height=2,width=15)
+        # self.showBird()
+    def load_caracteristics(self):
+        self.caracteristics = []
+        self.caracteristics.append("nombre")
+        self.caracteristics.append("descripcion")
+        self.caracteristics.append("habitat")
+        self.caracteristics.append("comentarios")     
+        self.caracteristics.append("ojos")
+        self.caracteristics.append("pico")
+        self.caracteristics.append("loras")
+        self.caracteristics.append("cuerpo")
+        self.caracteristics.append("tarsos")
+        self.caracteristics.append("cola")
+        self.caracteristics.append("alas")
+        self.caracteristics.append("corona")
+        self.caracteristics.append("garganta")
+        self.caracteristics.append("pecho")
+        self.caracteristics.append("vientre")
+        self.caracteristics.append("espalda")
+        self.caracteristics.append("cabeza")
+        self.caracteristics.append("cere")
+    
+    def show(self):
+        self.title=Label(self.frame1,text="Agregar Ave",background='#353437',fg="white")
+        self.title.configure(font=("Arial",20))
+        self.title.grid(column=1,row=1,columnspan=5)
+        self.currentpos=3
+        for i in range(len(self.labels)):
+            self.labels[i].configure(font=("Arial",15))
+            self.labels[i].grid(column=1,row=self.currentpos)
+            self.entries[i].grid(column=2, row=self.currentpos)
+            if(self.caracteristics[i]=="comentarios"):
+                self.currentpos+=1
+                self.instructions=Label(self.frame1,text="Indique los colores del ave",background='#353437',fg="white")
+                self.instructions.configure(font=("Arial",20))
+                self.instructions.grid(column=1, row=self.currentpos,columnspan=2)
+            self.currentpos+=1
+
+        self.filename=StringVar()
+        self.image=Label(self.frame1,text="Imagen",background='#353437',fg="white")
+        self.image.configure(font=("Arial",15))
+        self.image.grid(column=1,row=23)
+        self.showRute=Entry(self.frame1,textvariable=self.filename)
+        self.showRute.config(state='disabled',width=60)
+        self.showRute.grid(column=2,row=23)
+        self.chooseImage=Button(self.frame1,text="Seleccionar Imagen",command=self.selectImage,bg="#7a7b7c",fg="white")
+        self.chooseImage.config(height=1,width=15)
+        self.chooseImage.grid(column=3,row=23)
+        self.saveButton=Button(self.frame1,text="Guardar",command=self.save,bg="#7a7b7c",fg="white")
+        self.saveButton.config(height=2,width=15)
+        self.saveButton.grid(column=2,row=27)
+        self.menuButton=Button(self.frame1,text="Menu Principal",command=self.main_window,bg="#7a7b7c", fg="white")
+        self.menuButton.config(height=2,width=15)
+        self.menuButton.grid(column=1,row=27)
+
+    def selectImage(self):
+        self.filename.set(fd.askopenfilename(initialdir = "/",title = "Seleccionar imagen",filetypes = (("jpeg files","*.jpg"),("all files","*.*"))))
+        
+
+    def hide(self):
+        self.title.grid_remove()
+        for i in range(len(self.labels)):
+            self.labels[i].grid_remove()
+            self.entries[i].grid_remove()
+        self.chooseImage.grid_remove()
+        self.instructions.grid_remove()
+        self.image.grid_remove()
+        self.showRute.grid_remove()
+        self.saveButton.grid_remove()
+        self.menuButton.grid_remove()
+        
+
+    def save(self):
+        self.aux = bird()
+        for i in range(len(self.entries)):
+            if(self.caracteristics[i]=="descripcion" or self.caracteristics[i]=="habitat" or self.caracteristics[i]=="comentarios"):
+                if(self.caracteristics[i]=="descripcion"):
+                    self.aux.description=self.entries[i].get(1.0,"end-1c")
+                elif(self.caracteristics[i]=="habitat"):
+                    self.aux.habitat=self.entries[i].get(1.0,"end-1c")
+                elif(self.caracteristics[i]=="comentarios"):
+                    self.aux.comments=self.entries[i].get(1.0,"end-1c")
+            else:
+                if(self.entries[i].get()!=""):
+                    if(self.caracteristics[i]=="nombre"):
+                        self.aux.name=self.entries[i].get()
+                    else:
+                        self.aux.caracteristics[self.caracteristics[i]]=self.entries[i].get()
+        self.currentpath = os.getcwd()
+        self.currentpath+="\\sources\\"
+        shutil.copy(self.filename.get(),self.currentpath)
+        self.words=self.filename.get().split("/")
+        self.aux.image="sources/"+self.words[-1]
+        self.clasifier.aves.append(self.aux)
+        self.hide()
+        self.main_menu.show()
+    
+    def main_window(self):
+        self.hide()
+        self.main_menu.show()
+
+
         
 #En esta clase se tienen los metodos para clasificar
 class clasifier:
@@ -141,23 +302,24 @@ class clasifier:
         self.frame1=frame1
         self.title=Label(self.frame1,text="Clasificador de aves",background='#353437',fg="white")
         self.title.configure(font=("Arial",35))
-        
-        
+
         self.menuButton=Button(self.frame1,text="Main Menu",command=self.main_window,bg="#7a7b7c",fg="white")
         self.menuButton.config(height=10,width=50)
-        
+        self.aves=[]
+        self.default_ave=bird()
+        self.load_birds()
         self.loadall()
         
     def loadall(self):
         
         self.good=False
         self.doing=True
-        self.aves=[]
-        self.default_ave=bird()
-        self.load_birds()
-        self.rules={}
         
-        self.visual=visualizer(self.menu_window,self.frame1,self.aves[0],self.rules)
+        
+        # self.load_birds()
+        self.rules={}
+        self.decition=self.aves[0]
+        self.visual=visualizer(self.menu_window,self.frame1,self.decition,self.rules,self)
         self.possible_rules={}
         self.possible_aves=[]
 
@@ -165,7 +327,7 @@ class clasifier:
         
     def load_birds(self):
         self.default_ave.name="Desconocida"
-        self.default_ave.image="sources/garceta_pie_dorado.jpg"
+        self.default_ave.image="sources/default.jpeg"
         
         self.aux=bird()
         self.aux.name="Garceta pie dorado"
@@ -207,7 +369,6 @@ class clasifier:
         self.aux.caracteristics["espalda"]="negro"
         self.aux.caracteristics["alas"]="gris"
         self.aux.caracteristics["cola"]="gris"
-        self.aux.caracteristics["pecho"]="blanquecino"
         self.aux.image="sources/pedrete_corona_negra.jpg"
         self.aves.append(self.aux)
 
@@ -554,7 +715,7 @@ class clasifier:
     def clasify(self):
         #self.load_birds()
         self.loadall()
-        self.possible_aves=self.aves
+        self.possible_aves=copy.copy(self.aves)
         self.possible_rules={}
         self.rules={}
         other=True
@@ -598,16 +759,15 @@ class clasifier:
         if(len(self.possible_aves)==1):
             avetoshow=self.possible_aves[0]
 
-            self.visual=visualizer(self.menu_window,self.frame1,avetoshow,self.rules)
+            self.visual=visualizer(self.menu_window,self.frame1,avetoshow,self.rules,self)
         else:
-            self.visual=visualizer(self.menu_window,self.frame1,self.default_ave,self.rules)
+            self.visual=visualizer(self.menu_window,self.frame1,self.default_ave,self.rules,self)
         
         self.visual.show()
     
 
     def show(self):
         self.title.pack()
-        self.menuButton.pack(side=TOP)
         self.clasify()
         
 
